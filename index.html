@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<html lang="en">
 <head>
   <title>Idea Box</title>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -12,9 +13,9 @@
      <p class="idea-header">idea<span class="box-header">box</span></p>
    </header>
    <form>
-     <input type="text" class="idea-title" placeholder=" Title" required>
-     <input type="text" class="idea-body" placeholder=" Body">
-     <button class="save-button">save</button>
+     <input type="text" class="idea-title" aria-label="Title for idea" placeholder=" Title" required>
+     <input type="text" class="idea-body" aria-label="Information about idea" placeholder=" Body" required>
+     <button class="save-button" aria-label="Save button to commit idea title and information">save</button>
    </form>
   </section>
   <section class="output-section">
