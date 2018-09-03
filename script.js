@@ -8,6 +8,8 @@ ideaTitle.addEventListener('keyup', enableSave);
 ideaBody.addEventListener('keyup', enableSave);
 $(saveButton).on('click', createIdea)
 
+// var ideasArray =   new Array();
+
 $(document).ready(getIdea);
 
 function createIdea(event) {
@@ -27,7 +29,7 @@ function createIdea(event) {
   enableSave();
 }
 
-function createHTML(idea) {
+function createHTML(title, body, quality, identifier) {
   idea.innerHTML = 
             `<h2>${ideaTitle.value}</h2> 
             <button class="delete-button"></button>
@@ -80,7 +82,7 @@ function downVote(event) {
 
 function storeIdea(poop) {
   var stringifiedIdea = JSON.stringify(poop);
-  localStorage.setItem('rememberMe', stringifiedIdea);
+  localStorage.setItem(poop.identifier, stringifiedIdea);
 };
 
 function Card(title, body) {
@@ -91,17 +93,13 @@ function Card(title, body) {
 }
 
 function getIdea() {
-  for (var i = 0; i > newCard.length; i++) {
-    newCard[i];
-  var retrievedIdea = localStorage.getItem('rememberMe')
-  var parseIdea = JSON.parse(retrievedIdea);
-  iterateIdeas();
-  // createHTML();
+  for (var i = 0; i < localStorage.length; i++) {
+    var retrievedIdea = localStorage.getItem(localStorage.key(i));
+    var parseIdea = JSON.parse(retrievedIdea);
+    createHTML(parseIdea.title, parseIdea.body, 
+    parseIdea.quality, parseIdea.identifier);
+  }
 }
 
-
-  for (var i = 0; i > newCard.length; i++) {
-    newCard[i]
-  };
 
 
