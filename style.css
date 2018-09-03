@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -14,12 +15,13 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: 80%;
+  height: 37vh;
 }
 
-.output-section {
+#output-section {
   background-color: white;
   text-align: center;
+  height: 50vh;
 }
 
 header {
@@ -44,10 +46,9 @@ form {
   justify-content: center;
 }
 
-
 input {
   width: 37rem;
-  height: 1.5rem;
+  height: 2.1rem;
   margin: 5px;
   padding-top: 8px;
   padding-bottom: 0px;
@@ -58,7 +59,9 @@ input {
   font-size: 17px;
 }
 
-
+.search-input {
+  margin-top: 25px;
+}
 
 .save-button {
   width: 37rem;
@@ -81,6 +84,18 @@ input {
   border-width: 1px;
 }
 
+div {
+  width: 37rem;
+  margin: auto;
+  text-align: left;
+  line-height: 30px;
+  overflow-wrap: break-word;  
+}
+
+img {
+  width: 20px;
+}
+
 h2 {
   color: #6d6e71;
 }
@@ -92,6 +107,31 @@ h2 {
 .idea-quality {
   color: #6d6e71;
 }
+
+.delete-button {
+  background-image: url("icon/delete.svg");
+  background-size: cover;
+  height: 2rem;
+  width: 2rem;
+  border: none;
+}
+
+.downvote-button {
+  background-image: url("icon/downvote.svg");
+  background-size: cover;
+  height: 2rem;
+  width: 2rem;
+  border: none;
+}
+
+.upvote-button {
+  background-image: url("icon/upvote.svg");
+  background-size: cover;
+  height: 2rem;
+  width: 2rem;
+  border: none;
+}
+
 
 
 
