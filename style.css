@@ -108,31 +108,35 @@ h2 {
   color: #6d6e71;
 }
 
+.delete-button, .downvote-button, .upvote-button {
+  background-size: cover;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: none;
+}
+
 .delete-button {
   background-image: url("icon/delete.svg");
-  background-size: cover;
-  height: 2rem;
-  width: 2rem;
-  border: none;
+  float: right;
+  margin-top: -20px;
 }
 
 .downvote-button {
   background-image: url("icon/downvote.svg");
-  background-size: cover;
-  height: 2rem;
-  width: 2rem;
-  border: none;
+  margin: 10px;
 }
 
 .upvote-button {
   background-image: url("icon/upvote.svg");
-  background-size: cover;
-  height: 2rem;
-  width: 2rem;
-  border: none;
 }
+/*
+.upvote-button, .downvote-button {
+  margin-top: -10px;
+}*/
 
-
+hr {
+  margin: 10px;
+}
 
 
 

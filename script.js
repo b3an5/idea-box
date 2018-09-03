@@ -4,9 +4,11 @@ var saveButton = document.querySelector('.save-button');
 var deleteButton = document.querySelector('.delete-button');
 var outputSection = document.querySelector('#output-section');
 
-// ideaTitle.addEventListener('keyup', enableSave);
-// ideaBody.addEventListener('keyup', enableSave);
+ideaTitle.addEventListener('keyup', enableSave);
+ideaBody.addEventListener('keyup', enableSave);
 $(saveButton).on('click', createIdea)
+
+$(document).ready(getIdea);
 
 function createIdea(event) {
   event.preventDefault();
@@ -20,9 +22,9 @@ function createIdea(event) {
   deleteButton.addEventListener('click', deleteIdea);
   upvoteButton.addEventListener('click', upVote);
   downVoteButton.addEventListener('click', downVote);
-  ideaTitle.value = '';
-  ideaBody.value = '';
+  clearInputs();
   storeIdea(newCard);
+  enableSave();
 }
 
 function createHTML(idea) {
@@ -32,9 +34,22 @@ function createHTML(idea) {
             <p class="idea-details">${ideaBody.value}</p>
             <p class="idea-quality">
             <button class="upvote-button"></button>
-            <button class="downvote-button"></button> 
+            <button class="downvote-button"></button>
             quality: <span class="quality-value">swill</span></p>
             <hr>`
+}
+
+function enableSave() {
+  if (ideaTitle.value.length === 0 || ideaBody.value.length === 0) {
+    saveButton.disabled = true;
+  } else {
+    saveButton.disabled = false;
+  }
+}
+
+function clearInputs() {
+  ideaTitle.value = '';
+  ideaBody.value = '';
 }
   
 function deleteIdea(event) {
@@ -75,6 +90,18 @@ function Card(title, body) {
   this.quality = 'swill';
 }
 
+function getIdea() {
+  for (var i = 0; i > newCard.length; i++) {
+    newCard[i];
+  var retrievedIdea = localStorage.getItem('rememberMe')
+  var parseIdea = JSON.parse(retrievedIdea);
+  iterateIdeas();
+  // createHTML();
+}
 
+
+  for (var i = 0; i > newCard.length; i++) {
+    newCard[i]
+  };
 
 
