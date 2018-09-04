@@ -4,29 +4,55 @@ var saveButton = document.querySelector('.save-button');
 var deleteButton = document.querySelector('.delete-button');
 var outputSection = document.querySelector('#output-section');
 
-// ideaTitle.addEventListener('keyup', enableSave);
-// ideaBody.addEventListener('keyup', enableSave);
+ideaTitle.addEventListener('keyup', enableSave);
+ideaBody.addEventListener('keyup', enableSave);
 $(saveButton).on('click', createIdea)
+
+// var ideasArray =   new Array();
+
+$(document).ready(getIdea);
 
 function createIdea(event) {
   event.preventDefault();
-  var idea = document.createElement('div'); 
-  idea.innerHTML = 
-            `<h2>${ideaTitle.value}</h2> 
-            <button class="delete-button"></button>
-            <p class="idea-details">${ideaBody.value}</p>
-            <p class="idea-quality">
-            <button class="upvote-button"></button>
-            <button class="downvote-button"></button> 
-            quality: <span class="quality-value">swill</span></p>
-            <hr>`
-  document.getElementById('output-section').prepend(idea);
+  var newCard = new Card(ideaTitle.value, ideaBody.value);
+  
+  createHTML();
+  // document.getElementById('output-section').prepend(idea);
   var deleteButton = document.querySelector('.delete-button');
   var upvoteButton = document.querySelector('.upvote-button');
   var downVoteButton = document.querySelector('.downvote-button');
   deleteButton.addEventListener('click', deleteIdea);
   upvoteButton.addEventListener('click', upVote);
   downVoteButton.addEventListener('click', downVote);
+  clearInputs();
+  storeIdea(newCard);
+  enableSave();
+}
+
+function createHTML(title, body, quality, identifier) {
+  var newDiv = 
+            `<div class="newDiv">
+            <h2>${ideaTitle.value}</h2> 
+            <button class="delete-button"></button>
+            <p class="idea-details">${ideaBody.value}</p>
+            <p class="idea-quality">
+            <button class="upvote-button"></button>
+            <button class="downvote-button"></button>
+            quality: <span class="quality-value">swill</span></p>
+            <hr>
+            </div>`
+  $('#output-section').prepend(newDiv)
+}
+
+function enableSave() {
+  if (ideaTitle.value.length === 0 || ideaBody.value.length === 0) {
+    saveButton.disabled = true;
+  } else {
+    saveButton.disabled = false;
+  }
+}
+
+function clearInputs() {
   ideaTitle.value = '';
   ideaBody.value = '';
 }
@@ -57,6 +83,26 @@ function downVote(event) {
  }
 };
 
+function storeIdea(poop) {
+  var stringifiedIdea = JSON.stringify(poop);
+  localStorage.setItem(poop.identifier, stringifiedIdea);
+};
+
+function Card(title, body) {
+  this.title = title;
+  this.body = body;
+  this.identifier = Date.now();
+  this.quality = 'swill';
+}
+
+function getIdea() {
+  for (var i = 0; i < localStorage.length; i++) {
+    var retrievedIdea = localStorage.getItem(localStorage.key(i));
+    var parseIdea = JSON.parse(retrievedIdea);
+    createHTML(parseIdea.title, parseIdea.body, 
+    parseIdea.quality, parseIdea.identifier);
+  }
+}
 
 
 
