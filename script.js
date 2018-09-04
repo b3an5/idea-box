@@ -16,7 +16,7 @@ function createIdea(event) {
   event.preventDefault();
   var newCard = new Card(ideaTitle.value, ideaBody.value);
   
-  createHTML();
+  createHTML(newCard.title, newCard.body, newCard.quality);
   // document.getElementById('output-section').prepend(idea);
   var deleteButton = document.querySelector('.delete-button');
   var upvoteButton = document.querySelector('.upvote-button');
@@ -29,16 +29,16 @@ function createIdea(event) {
   enableSave();
 }
 
-function createHTML(title, body, quality, identifier) {
+function createHTML(title, body, quality) {
   var newDiv = 
             `<div class="newDiv">
-            <h2>${ideaTitle.value}</h2> 
+            <h2>${title}</h2> 
             <button class="delete-button"></button>
-            <p class="idea-details">${ideaBody.value}</p>
+            <p class="idea-details">${body}</p>
             <p class="idea-quality">
             <button class="upvote-button"></button>
             <button class="downvote-button"></button>
-            quality: <span class="quality-value">swill</span></p>
+            quality: <span class="quality-value">${quality}</span></p>
             <hr>
             </div>`
   $('#output-section').prepend(newDiv)
