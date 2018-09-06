@@ -14,9 +14,12 @@ $('#output-section').on('keyup', eventDelegator2);
 
 function eventDelegator2(event) {
   if ($(event.target).hasClass('newH2')) {
+    editContent(); 
+  }
+  if ($(event.target).hasClass('idea-details')) {
     editContent();
   }
-}
+};
 
 function eventDelegator(event) {
   if ($(event.target).hasClass('delete-button')) {
@@ -61,7 +64,9 @@ function createHTML(title, body, quality, id) {
 function editContent() {
   var updateEdit = JSON.parse(localStorage.getItem($(event.target).parents('.newDiv').attr('data-id')));
   var newTitle = document.querySelector('.newH2');
-  updateEdit.title = "how do we save this?"
+  var newBody = document.querySelector('.idea-details')
+  updateEdit.body = newBody.innerText;
+  updateEdit.title = newTitle.innerText;
   localStorage.setItem($(event.target).parents('.newDiv').attr('data-id'), JSON.stringify(updateEdit));
 }
 
