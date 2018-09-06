@@ -6,14 +6,14 @@ var saveButton = document.querySelector('.save-button');
 var deleteButton = document.querySelector('.delete-button');
 var outputSection = document.querySelector('#output-section');
 
-ideaTitle.addEventListener('keyup', enableSave);
-ideaBody.addEventListener('keyup', enableSave);
+$(ideaTitle).on('keyup', enableSave);
+$(ideaBody).on('keyup', enableSave);
 $(saveButton).on('click', createIdea);
 $('#output-section').on('click', eventDelegator);
-$('#output-section').on('keyup', eventDelegator2);
+$('#output-section').on('keyup', eventDelegatorEdit);
 
-function eventDelegator2(event) {
-  if ($(event.target).hasClass('newH2')) {
+function eventDelegatorEdit(event) {
+  if ($(event.target).hasClass('title')) {
     editContent(); 
   }
   if ($(event.target).hasClass('idea-details')) {
@@ -40,7 +40,7 @@ function createIdea(event) {
   var deleteButton = document.querySelector('.delete-button');
   var upvoteButton = document.querySelector('.upvote-button');
   var downVoteButton = document.querySelector('.downvote-button');
-  deleteButton.addEventListener('click', deleteIdea);
+  $(deleteButton).on('click', deleteIdea);
   clearInputs();
   storeIdea(newCard);
   enableSave();
@@ -49,7 +49,7 @@ function createIdea(event) {
 function createHTML(title, body, quality, id) {
   var newDiv = 
             `<div class="newDiv"  data-id=${id}> 
-            <h2 contenteditable="true" class="newH2">${title}</h2> 
+            <h2 contenteditable="true" class="title">${title}</h2> 
             <button class="delete-button"></button>
             <p contenteditable="true" class="idea-details">${body}</p>
             <p class="idea-quality">
@@ -63,7 +63,7 @@ function createHTML(title, body, quality, id) {
 
 function editContent() {
   var updateEdit = JSON.parse(localStorage.getItem($(event.target).parents('.newDiv').attr('data-id')));
-  var newTitle = document.querySelector('.newH2');
+  var newTitle = document.querySelector('.title');
   var newBody = document.querySelector('.idea-details')
   updateEdit.body = newBody.innerText;
   updateEdit.title = newTitle.innerText;
@@ -102,10 +102,6 @@ function upVote(event) {
     }
   }
   localStorage.setItem($(event.target).parents('.newDiv').attr('data-id'), JSON.stringify(storeIdea));
-
-  // var retrievedIdea = localStorage.getItem(localStorage.key(i));
-  // var parseIdea = JSON.parse(retrievedIdea);
-  // parseIdea.quality;
 };
 
 function downVote(object) {
@@ -121,15 +117,6 @@ function downVote(object) {
   }
   localStorage.setItem($(event.target).parents('.newDiv').attr('data-id'), JSON.stringify(storeIdea));
 };
-
-// function updateDownVote() {
-//   var clickedCard = $(event.target).parent().parent();
-//   var parseCard = JSON.parse(localStorage.getItem(clickedCard.data('id')));
-//   downVote(parseCard);
-//   // clickedCard.find('.quality-value').text(parseCard.quality);
-//   storeIdea(parseCard);
-//   clickedCard.find('.quality-value').text(parseCard.quality);
-// }
 
 function storeIdea(poop) {
   var stringifiedIdea = JSON.stringify(poop);
