@@ -1,149 +1,218 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
 }
 
 body {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  height: 100vh;
+ display: grid;
+ grid-template-rows: 1fr 1fr;
+ height: 100vh;
 }
 
 .input-section {
-  background-color: #e5f3f2;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  height: 37vh;
+ background-color: #e5f3f2;
+ display: flex;
+ flex-direction: column;
+ height: 37vh;
+ text-align: center;
+ text-align: center;
 }
 
 #output-section {
-  background-color: white;
-  text-align: center;
-  height: 50vh;
+ background-color: white;
+ height: 50vh;
+ text-align: center;
 }
 
 header {
-  font-size: 60px;
-  font-family: 'Roboto Slab', serif;
-  font-weight: 700;
+ font-family: 'Roboto Slab', serif;
+ font-size: 60px;
+ font-weight: 700;
 }
 
 .idea-header {
-  color: #00a79d;
-  margin-top: 25px;
+ color: #00a79d;
+ margin-top: 25px;
 }
 
 .box-header {
-  color: #6d6e71;
+ color: #6d6e71;
 }
 
 form {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+ align-items: center;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
 }
 
 input {
-  width: 37rem;
-  height: 2.1rem;
-  margin: 5px;
-  padding-top: 8px;
-  padding-bottom: 0px;
-  display: block;
+ display: block;
+ height: 2.1rem;
+ margin: 5px;
+ padding-top: 8px;
+ padding-bottom: 0px;
+ width: 37rem;
 }
 
 .idea-title, .idea-body, .search-input {
-  font-size: 17px;
+ font-size: 17px;
 }
 
 .search-input {
-  margin-top: 25px;
+ margin-top: 25px;
 }
 
 .save-button {
-  width: 37rem;
-  height: 2rem;
-  margin: 10px;
-  font-size: 19px;
-  color: #FFF;
-  background-color: #00a79d;
-  border-style: solid;
-  border-color: #00a79d;
-  border-width: 1px;
-  font-family: 'open sans', sans-serif;
-  font-weight: 400;
+ background-color: #00a79d;
+ border-style: solid;
+ border-color: #00a79d;
+ border-width: 1px;
+ color: #FFF;
+ font-family: 'open sans', sans-serif;
+ font-size: 19px;
+ font-weight: 400;
+ height: 2rem;
+ margin: 10px;
+ width: 37rem;
 }
 
 .save-button:hover {
-  background-color: #045e55;
-  border-style: solid;
-  border-color: #045e55;
-  border-width: 1px;
+ background-color: #045e55;
+ border-style: solid;
+ border-color: #045e55;
+ border-width: 1px;
 }
 
 div {
-  width: 37rem;
-  margin: auto;
-  text-align: left;
-  line-height: 30px;
-  overflow-wrap: break-word;  
+ line-height: 30px;
+ margin: auto;
+ text-align: left;
+ overflow-wrap: break-word;
+ width: 37rem;
 }
 
 img {
-  width: 20px;
+ width: 20px;
 }
 
 h2 {
-  color: #6d6e71;
+ color: #6d6e71;
 }
 
 .idea-details {
-  color: #939598;
+ color: #939598;
 }
 
 .idea-quality {
-  color: #6d6e71;
+ color: #6d6e71;
 }
 
 .delete-button, .downvote-button, .upvote-button {
-  background-size: cover;
-  height: 1.5rem;
-  width: 1.5rem;
-  border: none;
+ background-size: cover;
+ border: none;
+ height: 1.5rem;
+ width: 1.5rem;
 }
 
 .delete-button {
-  background-image: url("icon/delete.svg");
-  float: right;
-  margin-top: -20px;
+ background-image: url("icon/delete.svg");
+ float: right;
+ margin-top: -20px;
 }
 
 .downvote-button {
-  background-image: url("icon/downvote.svg");
-  margin: 10px;
+ background-image: url("icon/downvote.svg");
+ margin: 10px;
 }
 
 .upvote-button {
-  background-image: url("icon/upvote.svg");
+ background-image: url("icon/upvote.svg");
 }
-/*
-.upvote-button, .downvote-button {
-  margin-top: -10px;
-}*/
 
 hr {
-  margin: 10px;
+ margin: 10px;
 }
 
+@media (max-width: 900px) {
 
+body {
+ height: 100%;
+ width: 100%;
+ grid-template-rows: none;
+}
 
+.input-section {
+ height: 100%;
+ widows: 100vw;
+}
 
+input {
+ width: 32rem;
+}
 
+.save-button {
+ width: 32rem;
+}
 
+#idea-form {
+ margin-bottom: 25px;
+}
 
+#output-section {
+ height: 100%;
+ width: 100vw;
+}
 
+.search-input {
+ margin-bottom: 15px;
+}
 
+div {
+ width: 32rem;
+}
+}
 
+@media (max-width: 525px) {
+
+body {
+ height: 100%;
+ grid-template-rows: none;
+}
+
+.input-section {
+ height: 100%;
+ width: 100%;
+}
+
+input {
+ width: 25rem;
+}
+
+#idea-form {
+ margin-bottom: 25px;
+}
+
+.save-button {
+ width: 25rem;
+}
+
+.idea-title, .idea-body, .search-input {
+ font-size: 20px;
+}
+
+#output-section {
+ height: 100%;
+ width: 100%;
+}
+
+.search-input {
+ margin-bottom: 25px;
+ width: 25rem;
+}
+
+div {
+ width: 25rem;
+}
+}

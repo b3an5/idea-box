@@ -6,13 +6,13 @@ var saveButton = document.querySelector('.save-button');
 var deleteButton = document.querySelector('.delete-button');
 var outputSection = document.querySelector('#output-section');
 
-ideaTitle.addEventListener('keyup', enableSave);
-ideaBody.addEventListener('keyup', enableSave);
+$(ideaTitle).on('keyup', enableSave);
+$(ideaBody).on('keyup', enableSave);
 $(saveButton).on('click', createIdea);
 $('#output-section').on('click', eventDelegator);
-$('#output-section').on('keyup', eventDelegator2);
+$('#output-section').on('keyup', eventDelegatorEdit);
 
-function eventDelegator2(event) {
+function eventDelegatorEdit(event) {
   if ($(event.target).hasClass('newH2')) {
     editContent(); 
   }
@@ -64,7 +64,7 @@ function createHTML(title, body, quality, id) {
 function editContent() {
   var updateEdit = JSON.parse(localStorage.getItem($(event.target).parents('.newDiv').attr('data-id')));
   var newTitle = document.querySelector('.newH2');
-  var newBody = document.querySelector('.idea-details')
+  var newBody = document.querySelector('.idea-details');
   updateEdit.body = newBody.innerText;
   updateEdit.title = newTitle.innerText;
   localStorage.setItem($(event.target).parents('.newDiv').attr('data-id'), JSON.stringify(updateEdit));
@@ -90,7 +90,6 @@ function deleteIdea(event) {
 };
 
 function upVote(event) {
-  // console.log('hi')
   var storeIdea = JSON.parse(localStorage.getItem($(event.target).parents('.newDiv').attr('data-id')));
   if (event.target.className === 'upvote-button') {
     if ($(event.target).siblings('.quality-value').text() === 'swill') {
@@ -102,10 +101,6 @@ function upVote(event) {
     }
   }
   localStorage.setItem($(event.target).parents('.newDiv').attr('data-id'), JSON.stringify(storeIdea));
-
-  // var retrievedIdea = localStorage.getItem(localStorage.key(i));
-  // var parseIdea = JSON.parse(retrievedIdea);
-  // parseIdea.quality;
 };
 
 function downVote(object) {
@@ -121,15 +116,6 @@ function downVote(object) {
   }
   localStorage.setItem($(event.target).parents('.newDiv').attr('data-id'), JSON.stringify(storeIdea));
 };
-
-// function updateDownVote() {
-//   var clickedCard = $(event.target).parent().parent();
-//   var parseCard = JSON.parse(localStorage.getItem(clickedCard.data('id')));
-//   downVote(parseCard);
-//   // clickedCard.find('.quality-value').text(parseCard.quality);
-//   storeIdea(parseCard);
-//   clickedCard.find('.quality-value').text(parseCard.quality);
-// }
 
 function storeIdea(poop) {
   var stringifiedIdea = JSON.stringify(poop);
@@ -152,14 +138,13 @@ function getIdea() {
   }
 };
 
-$(document).ready(function(){
- $(".search-input").on("keyup", function() {
-   var value = $(this).val().toLowerCase();
-   $(".newDiv").filter(function() {
-     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-   });
- });
+$(".search-input").on("keyup", function() {
+  var value = $(this).val().toLowerCase();
+  $(".newDiv").filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  });
 });
+
 
 
 
